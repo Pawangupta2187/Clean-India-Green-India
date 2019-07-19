@@ -1,0 +1,107 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-sidenav-container>
+  <mat-sidenav #sidenav style="text-align:center;color:white;background-color:#464646 ">
+     
+
+     <!-- <a href="#">Profile</a>  -->
+     <mat-card class="example-card" style="background-color:#464646;color:white;">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title  style="color:white">Shiba Inu</mat-card-title>
+        <mat-card-subtitle  style="color:white">Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      </mat-card>
+
+      <mat-list style="color:white;">
+          <mat-list-item  style="color:white">Clean India Green India</mat-list-item>
+          <mat-divider  style="background-color:white"></mat-divider>
+          <mat-list-item  style="color:white">About Us</mat-list-item>
+          <mat-divider  style="background-color:white"></mat-divider>
+          <mat-list-item  style="color:white">Feedback</mat-list-item>
+          <mat-divider  style="background-color:white"></mat-divider>
+          <mat-list-item  style="color:white">Logout</mat-list-item>
+          
+        </mat-list>     
+  </mat-sidenav>
+  <mat-sidenav-content style="background-color: #464646">
+    <div style="width:100%;height:50px;background-color:#464646;" class="fixed-top">
+      <button mat-button (click)="sidenav.open()"><h1><i class="fas fa-bars" style="color:white"></i></h1></button>
+    </div>
+    
+
+    <agm-map style="height: 600px;width:100%" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="openDialog($event)"> <!--"selectonmap($event)">-->
+   <agm-marker [latitude]="latitude" [longitude]="longitude" >
+
+      <agm-info-window>Current Location</agm-info-window>
+   </agm-marker>
+   <agm-circle [latitude]="latitude" [longitude]="longitude" 
+      [radius]="1000"
+      [fillColor]="'blue'"
+      [circleDraggable]="false"
+      [editable]="false">
+  </agm-circle>
+
+      <agm-marker *ngFor="let x of latlongs;index as i" [latitude]="x.latitude" [longitude]="x.longitude" [label]="'i'">
+          <agm-info-window><strong>{{x.timing}}</strong></agm-info-window>
+      </agm-marker>
+  
+    <agm-polyline>
+       
+        <agm-polyline-point *ngFor="let x of latlongs" [latitude]="x.latitude" [longitude]="x.longitude"  >
+          
+      
+        </agm-polyline-point>
+   
+    </agm-polyline>
+
+    </agm-map>
+
+  <!-- <div #gmap style="width:100%;height:500px;margin-top:50px;"></div>-->
+
+      <mat-card style="width:100%;margin-top: 2px;">
+      <div>
+       <mat-card style="width:100%;
+       display: flex;
+       justify-content: center;
+       align-items: center;font-weight: bold">
+            <button class="btn btn-set" *ngIf="!edit" (click)="editroute()">Edit Route</button>&nbsp;
+            <button class="btn btn-set"  *ngIf="latlongs.length > 0 && edit" (click)="Undos()">Undo</button>&nbsp;
+        <button class="btn btn-set"  *ngIf="!edit" (click)="editroute()">Set Route</button>&nbsp;
+        <button class="btn btn-set"  *ngIf="edit" (click)="stoproute()">conifirm Route</button>
+        
+      </mat-card>
+    </div>
+ 
+      <h3>Search Your Place Here</h3>
+                 
+          <div class="input-group form-group">
+              <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" ><a  data-toggle="tooltip" data-placement="bottom" title="click for current location" ><mat-icon (click)="setCurrentPosition()">location_searching</mat-icon></a></button>
+                </span>  
+            
+<input type="text"  placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control"   #search >
+          </div>
+
+
+
+           
+
+
+
+            <div>
+                <mat-card style="background-color:#464646;color:white;width:100%"><h5>
+                    
+                    This project is used for track the garbage collector vehicle .user just need to login in their account and at home page and user need to search their location 
+                    or press the current location button and after that they see the current location of vehicle and their whole route and also the details of driver.
+                    for more information click here....</h5>
+                   </mat-card></div>
+        
+
+
+                   
+        </mat-card>
+  
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

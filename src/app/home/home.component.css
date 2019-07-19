@@ -1,0 +1,36 @@
+/*h1
+{
+    color: #369;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 250%;
+}*/
+mat-sidenav-container{
+    height: 100%;
+}
+mat-sidenav,mat-content{
+    padding:6px;
+}
+/*
+mat-sidenav{
+    background-color:white;
+    width:200px;
+}
+a{
+    color: black;
+    text-decoration:  none;
+}
+.example-card {
+    max-width: 700px;
+  }
+  */
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+ 
+  .btn-set {
+    background-color: #464646;
+    color: white;
+        border-radius: 10px;
+        font-weight: bold;
+}

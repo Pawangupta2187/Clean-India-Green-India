@@ -1,0 +1,18 @@
+
+<div mat-dialog-content>
+  <mat-card>
+  <div class="form-group" > 
+    <label >Enter Timing</label>
+    <input type="time" [(ngModel)]="timing" required>
+    </div>
+  </mat-card>
+</div>
+<!--<div class="form-group" > 
+  <label >Enter Timing</label>
+  <input type="time" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" name="username" [(ngModel)]="userModel.name"> 
+  <small  class="text-danger" [class.d-none]="name.valid || name.untouched">Timing is required</small>
+</div>-->
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="timing" >Ok</button>
+</div>
