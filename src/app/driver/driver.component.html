@@ -64,9 +64,9 @@
        display: flex;
        justify-content: center;
        align-items: center;font-weight: bold">
-            <button class="btn btn-set" *ngIf="!edit" (click)="editroute()">Edit Route</button>&nbsp;
+            <button class="btn btn-set" *ngIf="!edit && routeid" (click)="editroute()">Edit Route</button>&nbsp;
             <button class="btn btn-set"  *ngIf="latlongs.length > 0 && edit" (click)="Undos()">Undo</button>&nbsp;
-        <button class="btn btn-set"  *ngIf="!edit" (click)="editroute()">Set Route</button>&nbsp;
+        <button class="btn btn-set"  *ngIf="!edit && !routeid" (click)="editroute()">Set Route</button>&nbsp;
         <button class="btn btn-set"  *ngIf="edit" (click)="stoproute()">conifirm Route</button>
         
       </mat-card>
@@ -90,6 +90,7 @@
 
             <div>
                 <mat-card style="background-color:#464646;color:white;width:100%"><h5>
+                    
                     
                     This project is used for track the garbage collector vehicle .user just need to login in their account and at home page and user need to search their location 
                     or press the current location button and after that they see the current location of vehicle and their whole route and also the details of driver.

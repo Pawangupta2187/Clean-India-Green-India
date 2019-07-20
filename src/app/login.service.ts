@@ -118,8 +118,7 @@ getdata(uid:string)
  // console.log(this.userlist);
   return this.userlist;*/
   return this.userlist=this.db2.list('/users', ref => 
-  ref.orderByChild('userid').equalTo(uid) 
-)
+  ref.orderByChild('userid').equalTo(uid) )
 
 }
 

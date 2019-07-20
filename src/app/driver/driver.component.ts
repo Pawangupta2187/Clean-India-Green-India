@@ -6,6 +6,8 @@ import { NgForm,FormControl,NgControl } from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { TimingComponent } from '../timing/timing.component';
+import {AngularFireDatabase,AngularFireList} from '@angular/fire/database';
+import { LoginService } from '../login.service';
 
 
 @Component({
@@ -26,7 +28,10 @@ export class DriverComponent implements OnInit {
   public poly:boolean=false;
   public edit:boolean=false;
   public timing:string=null;
-
+  public i:number=0;
+  public routeid:string;
+userId:string;
+userList:any;
   editroute()
   {
     this.edit=true;
@@ -34,6 +39,7 @@ export class DriverComponent implements OnInit {
   stoproute()
   {
     this.edit=false;
+    this.storeRoute()
   }
   selectonmap(){
  if(this.edit){
@@ -55,7 +61,7 @@ export class DriverComponent implements OnInit {
     this.latlongs.splice(-1,1);
     console.log(this.latlongs)
   }
-    constructor(private ngzone:NgZone,private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,public dialog: MatDialog) {}
+    constructor(private service:LoginService,private db2:AngularFireDatabase,private ngzone:NgZone,private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,public dialog: MatDialog) {}
     
     ngOnInit() {
       this.zoom=8;
@@ -68,6 +74,15 @@ export class DriverComponent implements OnInit {
       ];
       
   */
+ this.service.getLoggedInUser()
+ .subscribe( user => {
+        if(user)
+        { this.userId = user.uid;
+         
+      this.showdata(user.uid)
+      
+        }
+ });
   this.setCurrentPosition();
   
   
@@ -90,6 +105,7 @@ export class DriverComponent implements OnInit {
      });
    }
       );
+
         }
   
         private setCurrentPosition()
@@ -133,6 +149,66 @@ export class DriverComponent implements OnInit {
           });
         }
         }
+
+
+        storeRoute()
+        {if(this.routeid)
+          {
+            console.log("update")
+            return this.db2.object('driverstop/'+this.routeid).update({
+              userid:this.userId,
+             stops:this.latlongs
+            })
+           //  this.db2.object(`driverstop/${this.routeid}/stops`.update(this.latlongs)
+          }else{console.log("new")
+         // this.user_id=userCredential.user.uid;
+       //  console.log("store"+this.latlongs)
+          return this.db2.list('driverstop/').push({
+            userid:this.userId,
+           stops:this.latlongs
+          })
+
+        }
+        }
+
+
+        showdata(uid){
+
+          
+
+
+          var x=this.db2.list('/driverstop', ref => 
+          ref.orderByChild('userid').equalTo(uid));//this.service.getdata(this.userId);
+          x.snapshotChanges().subscribe(item=>{
+        this.userList=[];
+            item.forEach(element=>{
+              var y=element.payload.toJSON();
+              y["$key"]=element.key;
+              this.userList.push(y);
+              this.routeid=element.key;
+              console.log("lenght of array="+element.key);
+              while(this.userList[0].stops[this.i].latitude)
+              {
+            
+              // console.log("lenght of array="+this.userList[0].stops[this.i].latitude);
+               this.latlong={
+                latitude:this.userList[0].stops[this.i].latitude,
+                longitude:this.userList[0].stops[this.i].longitude,
+                timing:this.userList[0].stops[this.i].timing
+              }
+              this.latlongs.push(this.latlong);
+               this.i++;
+              }
+             
+            //console.log("lenght of array="+this.userList.key);
+
+            })
+          })
+         
+             
+          
+         }
+
       }
 
        
