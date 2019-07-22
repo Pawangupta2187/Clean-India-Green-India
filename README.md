@@ -1,4 +1,5 @@
 # Clean-India-Green-India
+This project is for tracking the garbage collector vehicle .people can track vehicle according to their colony route and they also check the driver details and regular duty timing.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
