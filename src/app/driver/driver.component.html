@@ -29,7 +29,7 @@
     </div>
     
 
-    <agm-map style="height: 600px;width:100%" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="openDialog($event)"> <!--"selectonmap($event)">-->
+    <agm-map style="height: 600px;width:100%" [latitude]="latitude" [longitude]="longitude" [zoom]="12" (mapClick)="openDialog($event)"> <!--"selectonmap($event)">-->
    <agm-marker [latitude]="latitude" [longitude]="longitude" >
 
       <agm-info-window>Current Location</agm-info-window>

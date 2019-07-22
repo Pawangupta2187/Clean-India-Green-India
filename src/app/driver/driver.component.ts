@@ -32,6 +32,10 @@ export class DriverComponent implements OnInit {
   public routeid:string;
 userId:string;
 userList:any;
+
+
+//near route
+
   editroute()
   {
     this.edit=true;
@@ -106,6 +110,8 @@ userList:any;
    }
       );
 
+    
+
         }
   
         private setCurrentPosition()
@@ -155,20 +161,23 @@ userList:any;
         {if(this.routeid)
           {
             console.log("update")
-            return this.db2.object('driverstop/'+this.routeid).update({
+             this.db2.object('driverstop/'+this.routeid).update({
               userid:this.userId,
              stops:this.latlongs
             })
            //  this.db2.object(`driverstop/${this.routeid}/stops`.update(this.latlongs)
-          }else{console.log("new")
+          }
+          else{
+            console.log("new")
          // this.user_id=userCredential.user.uid;
        //  console.log("store"+this.latlongs)
-          return this.db2.list('driverstop/').push({
+           this.db2.list('driverstop/').push({
             userid:this.userId,
            stops:this.latlongs
           })
 
         }
+        this.addstartpoint()
         }
 
 
@@ -209,6 +218,19 @@ userList:any;
           
          }
 
+         addstartpoint(){
+           console.log("startpoint")
+           console.log(this.latlongs[0].latitude+"_"+this.latlongs[0].longitude)
+        return this.db2.object('startpoints/'+this.userId).update({
+            lat_long:this.latlongs[0].latitude+"_"+this.latlongs[0].longitude,
+            userid:this.userId
+         
+          })
+
+
+         }
+
+         
       }
 
        
