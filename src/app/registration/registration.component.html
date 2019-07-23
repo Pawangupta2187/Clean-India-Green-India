@@ -1,9 +1,5 @@
-<tr *ngFor="let users of userList">
-  <td>{{users.userid}}</td>
 
-  </tr>
-
-
+<body style=" margin: 0;padding: 0;background-color:#464646;height: 100vh;" class="back-image">
 <div class="d-flex justify-content-center h-100">
   <div class="card">
   <div class="card-header" style="font-weight: bold ;text-align: center;">
@@ -60,7 +56,7 @@
   </div>
   <div class="card-footer">
   <small  *ngIf="authError">{{authError}}</small>
-              <div colspan="2" align="center"><input type="submit" class="btn btn-primary"   value="Sign Up"  /></div>
+              <div colspan="2" align="center"><input type="submit" class="btn btn-success"   value="Sign Up"  /></div>
      
             
   </div>
@@ -69,3 +65,5 @@
   </div>
   
   </div>
+
+</body>
