@@ -55,6 +55,7 @@ public driverList:any;
  public latlongs:any=[];
  public latlong:any={};
  public routeid:string;
+ 
 
   constructor(private db2:AngularFireDatabase,private ngzone:NgZone,private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,private service:LoginService,private afAuth: AngularFireAuth,private db: AngularFireDatabase,private afs:AngularFirestore,private route:Router) {
     
