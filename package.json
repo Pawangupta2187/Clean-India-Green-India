@@ -25,7 +25,7 @@
     "@angular/router": "~7.2.0",
     "@types/googlemaps": "^3.37.0",
     "core-js": "^2.5.4",
-    "firebase": "^6.2.4",
+    "firebase": "^6.3.1",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
@@ -51,5 +51,17 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
-  }
+  },
+  "description": "This project is for tracking the garbage collector vehicle .people can track vehicle according to their colony route and they also check the driver details and regular duty timing.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pawangupta2187/Clean-India-Green-India.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pawangupta2187/Clean-India-Green-India/issues"
+  },
+  "homepage": "https://github.com/Pawangupta2187/Clean-India-Green-India#readme"
 }

@@ -20,7 +20,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { query } from '@angular/animations';
 //import { BehaviorSubject } from 'rxjs';
 import { ViewChild , ElementRef, NgZone} from '@angular/core';
-//import { } from 'googlemaps';
+import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
 
