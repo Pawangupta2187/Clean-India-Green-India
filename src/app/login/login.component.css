@@ -2,18 +2,25 @@
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
 
-
+.back-image
+{
+    background-image:url('/assets/tree.jpg');
+background-repeat:no-repeat;
+background-size:cover;
+background-position:center;
+width:100%;
+}
 .container{
 height: 100%;
 align-content: center;
 }
 
 .card{
-height: 370px;
+
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-color:green ;
+background-color:#39ff15;
 }
 
 .social_icon span{
@@ -65,10 +72,13 @@ margin-right: 5px;
 }
 
 .login_btn{
-color: black;
-background-color: blue;
+color: #ffffff;
+background-color:#464646;
 width: 100px;
+border-radius: 10px;
+font-weight: bold;
 }
+
 
 .login_btn:hover{
 color: black;
@@ -76,7 +86,7 @@ background-color: white;
 }
 
 .links{
-color: white;
+color: black;
 }
 
 .links a{

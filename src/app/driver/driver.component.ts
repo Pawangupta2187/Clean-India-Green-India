@@ -21,7 +21,7 @@ export class DriverComponent implements OnInit {
   public zoom:number;
   public latitude:number;
   public longitude:number;
-  public latB:number=28.628222;
+public latB:number=28.628222;
   public lngB:number=76.98715;
   public latlongs:any=[];
   public latlong:any={};

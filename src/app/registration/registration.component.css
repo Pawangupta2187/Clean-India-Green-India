@@ -3,4 +3,14 @@
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
+    background-color:#39ff15;
+}
+
+.back-image
+{
+    background-image:url('/assets/tree.jpg');
+background-repeat:no-repeat;
+background-size:cover;
+background-position:center;
+width:100%;
 }
