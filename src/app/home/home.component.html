@@ -2,9 +2,9 @@
 <mat-sidenav-container>
   
      
-    <mat-sidenav #sidenav style="text-align:center;color:white;background-color:#464646 ">
+    <mat-sidenav #sidenav style="text-align:center;color:white;background-color:#39ff15 ">
      <!-- <a href="#">Profile</a>  -->
-     <mat-card class="example-card" style="background-color:#464646;color:white;">
+     <mat-card class="example-card" style="background-color:#39ff15;color:white;">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title  style="color:white"><div *ngFor="let user of userList">{{user.displayName}}</div></mat-card-title>
@@ -41,7 +41,7 @@
 
   <mat-sidenav-content>
    
-    <div style="width:100%;height:50px;background-color:#464646;" class="fixed-top">
+    <div style="width:100%;height:50px;background-color:#39ff15;" class="fixed-top">
       <a (click)="sidenav.open()"><h1><i class="fas fa-bars" style="color:white"></i></h1></a>
     </div>
 
@@ -53,20 +53,15 @@
    
          <agm-info-window>Current Location</agm-info-window>
       </agm-marker>
-      <agm-circle [latitude]="latitude" [longitude]="longitude" 
-         [radius]="500"
-         [fillColor]="'blue'"
-         [circleDraggable]="false"
-         [editable]="true">
-     </agm-circle>
+     
    
-         <agm-marker *ngFor="let x of latlongs;index as i" [latitude]="x.latitude" [longitude]="x.longitude" [label]="'i'">
+         <agm-marker *ngFor="let x of latlongs;index as i" [latitude]="x.latitude" [longitude]="x.longitude" [label]="i">
              <agm-info-window><strong>{{x.timing}}</strong></agm-info-window>
          </agm-marker>
         
    <agm-polyline>
           
-           <agm-polyline-point *ngFor="let x of latlongs" [latitude]="x.latitude" [longitude]="x.longitude"  >
+           <agm-polyline-point *ngFor="let x of latlongs"  [latitude]="x.latitude" [longitude]="x.longitude"  >
              
          
            </agm-polyline-point>
@@ -78,31 +73,10 @@
 
 
 
-
-
-       <div style="width:100%;float:left;">
-
-  
-        <mat-card class="example-card">
-          
-          <img  src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" width="50%">
-          
-        
-        </mat-card>
-        
-        
-        
-        </div>
-
-
-
-
-
-
        <mat-card style="width:100%;margin-top: 2px;">
        
-   
-        <h3>Search Your Place Here<button class="btn btn-primary" (click)="shownearroute()">show route</button></h3>
+   <h3>
+     Search Your Place Here</h3>
                    
             <div class="input-group form-group">
                 <span class="input-group-btn">
@@ -110,17 +84,72 @@
                   </span>  
               
   <input type="text"  placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control"   #search >
-            </div>
+  <span class="input-group-btn">
+    <button class="btn " (click)="shownearroute()" style="background-color: #39ff15" >show route</button>
+  </span>           
+</div>
+  
+  
+
+
+
+<div  *ngFor="let driver of driverList"  class="jumbotron jumbotron-fluid  mb-0 "  style="padding-top: 2rem; padding-bottom: 2rem; background-color: #39ff15;">
+
+  <div class="container" >
+
+        <div class="card-deck text-white">
+
+      <div class="card bg-success shadow-lg" style="padding:0px;">
+
+        <div class="card-body  p-5">
+
+          <div><img src="/assets/tree.jpg" height="100%" width="100%"></div>
+         
+        </div>
+
+      </div>
+
+      <div class="card bg-success shadow-lg">
+        <div class="card-header text-center"><h4>Driver Details</h4></div>
+        <div class="card-body  p-5">
+
+         
+          <table width="80%"  align="left"  cellpadding="2" cellspacing="1"  style="font-size:30px;">
+            <tbody >
+              <tr>
+                <td >Name :</td><td>  {{driver.dname}}</td>
+              </tr>
+              <tr>
+                <td>Contact :</td><td>  {{driver.contact}}</td>
+              </tr>
+              <tr>
+                <td>Duty Timing : </td><td>  {{driver.duty_timing}}</td>
+              </tr>
+            
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+
+      
+
+      
+    </div>
+
+  </div>
+
+</div>
+
+
+
   
   
   
-  
-  
-              <div>
-                  <mat-card style="background-color:#464646;color:white;width:100%"><h5>
-                      <div *ngFor="let driver of driverList">
-                        {{driver.dname}}
-                      </div>
+              <div style="padding-top:1px;">
+                  <mat-card style="background-color:#39ff15;color:white;width:100%"><h5>
+                      
                       This project is used for track the garbage collector vehicle .user just need to login in their account and at home page and user need to search their location 
                       or press the current location button and after that they see the current location of vehicle and their whole route and also the details of driver.
                       for more information click here....</h5>
@@ -130,65 +159,7 @@
   
                      
           </mat-card>
-    
-
-<!--
-
-      <mat-card style="margin-bottom: 3px;height:200px;width:100%;margin-top: 82px;">Simple card<mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon></mat-card>
-    <div style="display: flex;justify-content: center; align-items: center;margin-bottom:3px;">
-      <mat-card class="example-card" >
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
-            <tr *ngFor="let users of userList">
-              <td>{{users.displayName}}</td>
-            
-              </tr>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button><mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
-              LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-        
-      </div>
-      <div style="
-      display: flex;
-      justify-content: center;
-      align-items: center;">
-        <mat-card class="example-card" >
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>Shiba Inu</mat-card-title>
-              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-              <p>
-                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                bred for hunting.
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card>
-          
-        </div>
-        
-      -->
+ 
   </mat-sidenav-content>
 </mat-sidenav-container>
 
