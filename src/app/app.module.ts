@@ -24,6 +24,7 @@ import { RegistrationComponent } from './registration/registration.component';
 //import {UsersService} from './shared/users.service';
 import {DriverComponent} from './driver/driver.component';
 import { TimingComponent } from './timing/timing.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -34,7 +35,8 @@ import { TimingComponent } from './timing/timing.component';
     HomeComponent,
     RegistrationComponent,
     DriverComponent,
-    TimingComponent 
+    TimingComponent,
+    ProfileComponent 
   ],
   entryComponents:[TimingComponent],
   imports: [
