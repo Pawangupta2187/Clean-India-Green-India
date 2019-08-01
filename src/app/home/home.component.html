@@ -41,8 +41,8 @@
 
   <mat-sidenav-content>
    
-    <div style="width:100%;height:50px;background-color:#39ff15;" class="fixed-top">
-      <a (click)="sidenav.open()"><h1><i class="fas fa-bars" style="color:white"></i></h1></a>
+    <div style="width:100%;height:50px;background-color:#39ff15;padding-left:10px;" class="fixed-top">
+      <a (click)="sidenav.open()"><h1><i class="fas fa-bars" style="color:white;padding-left:4px;"></i></h1></a>
     </div>
 
 
@@ -55,19 +55,36 @@
       </agm-marker>
      
    
-         <agm-marker *ngFor="let x of latlongs;index as i" [latitude]="x.latitude" [longitude]="x.longitude" [label]="i">
+         <agm-marker *ngFor="let x of latlongs;index as i" [latitude]="x.latitude" [longitude]="x.longitude" >
              <agm-info-window><strong>{{x.timing}}</strong></agm-info-window>
          </agm-marker>
-        
-   <agm-polyline>
+        <!--
+   <agm-polyline    [strokeColor]="strokecolor">
           
            <agm-polyline-point *ngFor="let x of latlongs"  [latitude]="x.latitude" [longitude]="x.longitude"  >
              
          
            </agm-polyline-point>
       
-       </agm-polyline>
+       </agm-polyline>-->
    
+       <agm-polyline   *ngFor="let x of flatlongs" [strokeColor]="strokecolor">
+          
+          <agm-polyline-point *ngFor="let y of x"  [latitude]="y.latitude" [longitude]="y.longitude"  >
+            
+        
+          </agm-polyline-point>
+     
+      </agm-polyline>
+      <agm-polyline    [strokeColor]="strokecolor">
+          
+        <agm-polyline-point *ngFor="let y of latlongs"  [latitude]="y.latitude" [longitude]="y.longitude"  >
+          
+      
+        </agm-polyline-point>
+   
+    </agm-polyline>
+
        </agm-map>
        
 
@@ -114,16 +131,16 @@
         <div class="card-body  p-5">
 
          
-          <table width="80%"  align="left"  cellpadding="2" cellspacing="1"  style="font-size:30px;">
+          <table class="table" width="80%"  align="left"  cellpadding="2" cellspacing="1"  >
             <tbody >
               <tr>
-                <td >Name :</td><td>  {{driver.dname}}</td>
+                <td >Name </td><td>  {{driver.dname}}</td>
               </tr>
               <tr>
-                <td>Contact :</td><td>  {{driver.contact}}</td>
+                <td>Contact </td><td>  {{driver.contact}}</td>
               </tr>
               <tr>
-                <td>Duty Timing : </td><td>  {{driver.duty_timing}}</td>
+                <td>Duty Timing  </td><td>  {{driver.duty_timing}}</td>
               </tr>
             
             </tbody>
@@ -149,7 +166,12 @@
   
               <div style="padding-top:1px;">
                   <mat-card style="background-color:#39ff15;color:white;width:100%"><h5>
-                      
+                      <div *ngFor="let x of flatlongs">
+
+                        <div *ngFor="let y of x">
+                          {{y.latitude}}
+                        </div>
+                      </div>
                       This project is used for track the garbage collector vehicle .user just need to login in their account and at home page and user need to search their location 
                       or press the current location button and after that they see the current location of vehicle and their whole route and also the details of driver.
                       for more information click here....</h5>

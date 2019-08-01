@@ -20,7 +20,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { query } from '@angular/animations';
 //import { BehaviorSubject } from 'rxjs';
 import { ViewChild , ElementRef, NgZone} from '@angular/core';
-import { } from 'googlemaps';
+//import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
 
@@ -55,7 +55,11 @@ public driverList:any;
  public latlongs:any=[];
  public latlong:any={};
  public routeid:string;
- 
+ public strokecolors=['green','red','blue','black','yellow'];
+ public strokecolor:string;
+ public color:number=-1;
+ public flatlongs:any;
+ public index:number=0;
 
   constructor(private db2:AngularFireDatabase,private ngzone:NgZone,private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,private service:LoginService,private afAuth: AngularFireAuth,private db: AngularFireDatabase,private afs:AngularFirestore,private route:Router) {
     
@@ -75,7 +79,7 @@ public driverList:any;
 //googlemap
 this.setCurrentPosition();
   
-  
+  //autocomplete
       this.mapsAPILoader.load().then(
    () => {
     const autocomplete = new google.maps.places.Autocomplete(this.searchElement.nativeElement, { types:[],componentRestrictions:{'country':'IN'} });
@@ -154,7 +158,7 @@ setmarker(event)
 this.latitude=event.coords.lat;
 this.longitude=event.coords.lng;
   this.latlongs=[];
-  this.userList=[];
+  this.driverList=[];
  // console.log("array remove "+this.latlongs)
  
  
@@ -174,8 +178,8 @@ this.driverList=[];
      y["$key"]=element.key;
    this.driverList.push(y);
      this.nearroute=element.key;
-     console.log("nearroute="+this.nearroute);
-     this.showroute(this.nearroute)
+       this.showroute(this.nearroute)
+    
    })
  })
 
@@ -187,38 +191,79 @@ this.driverList=[];
 
 showroute(uid){
 
-          
+     this.color++;
+     this.strokecolor=this.strokecolors[this.color];     
 
-console.log("show route")
+//console.log(this.latlongs.length)
+    // this.latlongs.length=0;
+
+
+     //console.log("show route"+this.latlongs)
   var x=this.db2.list('/driverstop', ref => 
   ref.orderByChild('userid').equalTo(uid));//this.service.getdata(this.userId);
   x.snapshotChanges().subscribe(item=>{
 this.userList=[];
+
+
     item.forEach(element=>{
       var y=element.payload.toJSON();
       y["$key"]=element.key;
       this.userList.push(y);
       this.routeid=element.key;
-      console.log("lenght of array="+element.key);
-      while(this.userList[0].stops[this.i].latitude)
+    
+    
+     // console.log("lenght of array2="+this.flatlongs.length+"");
+     this.i=0;
+   this.userList.forEach(x=>{
+     
+     while(x.stops[this.i]!=undefined)
+     {
+      console.log(x.stops[this.i]);
+      this.latlong={
+        latitude:x.stops[this.i].latitude,
+        longitude:x.stops[this.i].longitude,
+        timing:x.stops[this.i].timing
+      }
+      this.latlongs.push(this.latlong);
+      this.flatlongs[this.index][this.i]=this.latlong;
+     this.i++;
+      }
+
+    
+   })
+    this.flatlongs[this.index]=this.latlongs;
+    this.index++;
+    /*console.log(this.latlongs.length);
+    console.log(this.flatlongs.length);
+    console.log(this.flatlongs[0][0].latitude);
+    console.log(this.flatlongs);
+    console.log(this.flatlongs[0].length);
+  
+*/
+
+     /* this.i=0;
+      
+      while(this.userList[0].stops[this.i].latitude!=undefined)
       {
     
-      // console.log("lenght of array="+this.userList[0].stops[this.i].latitude);
-       this.latlong={
+            this.latlong={
         latitude:this.userList[0].stops[this.i].latitude,
         longitude:this.userList[0].stops[this.i].longitude,
         timing:this.userList[0].stops[this.i].timing
       }
       this.latlongs.push(this.latlong);
+      console.log(this.userList[0].stops[this.i].latitude)
+      console.log(this.latlongs.length)
+      console.log(this.i);
        this.i++;
-      }
+   
+      }*/
      
-    //console.log("lenght of array="+this.userList.key);
-
     })
+    
   })
  
-     
-  
+ 
+ 
  }
 }
