@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import {Users} from './users.model';
 import {AngularFireDatabase,AngularFireList} from '@angular/fire/database';
 
+
 import { Component } from '@angular/core';
 
 //import 'rxjs/add/operator/switchMap';
@@ -121,6 +122,18 @@ getdata(uid:string)
   ref.orderByChild('userid').equalTo(uid) )
 
 }
+
+
+
+getAuth() { 
+  return this.afAuth.auth; 
+} 
+
+resetPasswordInit(email: string) { 
+  return this.afAuth.auth.sendPasswordResetEmail(
+    email, 
+    { url: 'http://localhost:4200/login' }); 
+  } 
 
 
 

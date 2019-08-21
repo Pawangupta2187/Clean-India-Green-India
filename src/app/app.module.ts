@@ -25,6 +25,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import {DriverComponent} from './driver/driver.component';
 import { TimingComponent } from './timing/timing.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { PassworddialogComponent } from './passworddialog/passworddialog.component';
 
 
 
@@ -36,9 +38,11 @@ import { ProfileComponent } from './profile/profile.component';
     RegistrationComponent,
     DriverComponent,
     TimingComponent,
-    ProfileComponent 
+    ProfileComponent,
+    ResetpasswordComponent,
+    PassworddialogComponent 
   ],
-  entryComponents:[TimingComponent],
+  entryComponents:[TimingComponent,PassworddialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -34,12 +34,12 @@
 
       <agm-info-window>Current Location</agm-info-window>
    </agm-marker>
-   <agm-circle [latitude]="latitude" [longitude]="longitude" 
+  <!--<agm-circle [latitude]="latitude" [longitude]="longitude" 
       [radius]="1000"
       [fillColor]="'blue'"
       [circleDraggable]="false"
       [editable]="false">
-  </agm-circle>
+  </agm-circle>-->
 
       <agm-marker *ngFor="let x of latlongs;index as i" [latitude]="x.latitude" [longitude]="x.longitude" [label]="'i'">
           <agm-info-window><strong>{{x.timing}}</strong></agm-info-window>

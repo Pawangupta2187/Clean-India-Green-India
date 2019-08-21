@@ -4,7 +4,7 @@
      
     <mat-sidenav #sidenav style="text-align:center;color:white;background-color:#39ff15 ">
      <!-- <a href="#">Profile</a>  -->
-     <mat-card class="example-card" style="background-color:#39ff15;color:white;">
+     <mat-card class="example-card" style="background-color:#39ff15;color:white;" routerLink="/profile">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title  style="color:white"><div *ngFor="let user of userList">{{user.displayName}}</div></mat-card-title>
@@ -18,11 +18,13 @@
         <mat-list-item  style="color:white"><a matLine href="#"style="color:white">About Us</a></mat-list-item>
         <mat-divider  style="background-color:white"></mat-divider>
         <mat-list-item  style="color:white"><a matLine href="" (click)="logout()" style="color:white">Feedback</a></mat-list-item>
-        <mat-divider  style="background-color:white"></mat-divider>
+        <mat-divider  style="background-color:white"></mat-divider><mat-divider  style="background-color:white"></mat-divider>
         <mat-list-item  style="color:white"><a matLine href="" (click)="logout()"style="color:white">Logout</a></mat-list-item>
-        
+        <mat-divider  style="background-color:white"></mat-divider>
       </mat-list>     
 </mat-sidenav>
+
+
 
 
 
@@ -47,14 +49,19 @@
 
 
 
-
+<!--user location-->
     <agm-map style="height: 600px;width:100%" [latitude]="latitude" [longitude]="longitude" [zoom]="15" (mapClick)="setmarker($event)"> <!--"selectonmap($event)">-->
       <agm-marker [latitude]="latitude" [longitude]="longitude" >
    
          <agm-info-window>Current Location</agm-info-window>
       </agm-marker>
+     <!--driver current location-->
+       <agm-marker  [latitude]="driverlat" [longitude]="driverlong">
      
-   
+           <agm-info-window>Driver Location</agm-info-window>
+        </agm-marker>
+
+   <!--driver stop-->
          <agm-marker *ngFor="let x of latlongs;index as i" [latitude]="x.latitude" [longitude]="x.longitude" >
              <agm-info-window><strong>{{x.timing}}</strong></agm-info-window>
          </agm-marker>
@@ -128,10 +135,10 @@
 
       <div class="card bg-success shadow-lg">
         <div class="card-header text-center"><h4>Driver Details</h4></div>
-        <div class="card-body  p-5">
+        <div class="card-body  p-5 ">
 
          
-          <table class="table" width="80%"  align="left"  cellpadding="2" cellspacing="1"  >
+          <table class="table text-white" width="80%"  align="left"  cellpadding="2" cellspacing="1"  >
             <tbody >
               <tr>
                 <td >Name </td><td>  {{driver.dname}}</td>
@@ -172,6 +179,9 @@
                           {{y.latitude}}
                         </div>
                       </div>
+                      driver position {{driverlat}}- {{driverlong}}
+                      <div  *ngFor="let z of driverposition">
+                        {{z}}                     </div>
                       This project is used for track the garbage collector vehicle .user just need to login in their account and at home page and user need to search their location 
                       or press the current location button and after that they see the current location of vehicle and their whole route and also the details of driver.
                       for more information click here....</h5>

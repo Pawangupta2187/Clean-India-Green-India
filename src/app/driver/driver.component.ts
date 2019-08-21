@@ -71,23 +71,18 @@ userList:any;
       this.zoom=8;
       this.latitude=26.2652;
       this.longitude=28.8352;
-      /*this.latlongs=[
-        {latitude:this.latitude,longitude:this.longitude},
-        {latitude:this.latB,longitude:this.lngB}
-        
-      ];
       
-  */
  this.service.getLoggedInUser()
  .subscribe( user => {
         if(user)
         { this.userId = user.uid;
-         
+         console.log(this.userId);
       this.showdata(user.uid)
+      this.setCurrentPosition();
       
         }
  });
-  this.setCurrentPosition();
+ // this.setCurrentPosition();
   
   
       this.mapsAPILoader.load().then(
@@ -117,14 +112,15 @@ userList:any;
         private setCurrentPosition()
   
         {
-          console.log('done');
+         // console.log('done');
           if('geolocation' in navigator)
           {
             navigator.geolocation.getCurrentPosition((position)=>{
               this.latitude=position.coords.latitude;
               this.longitude=position.coords.longitude;
               this.zoom=8;
-                })
+                            })
+               this.addcurlocation()  ;          
           }
         }
 
@@ -228,6 +224,14 @@ userList:any;
           })
 
 
+         }
+         addcurlocation(){
+          console.log(this.userId)
+this.db2.object('current_location/'+this.userId).update({
+            latitude:this.latitude,
+            longitude:this.longitude,
+                 })
+           console.log("done")
          }
 
          

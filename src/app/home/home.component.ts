@@ -47,6 +47,11 @@ public lngx=76.98805052700698;
 
 //driver
 public driverList:any;
+public stopList:any;
+//driver location
+public driverlat:number;
+public driverlong:number;
+public driverposition:any=[];
 //googlemap
  public zoom:number=4;
  public latitude:number;
@@ -58,7 +63,7 @@ public driverList:any;
  public strokecolors=['green','red','blue','black','yellow'];
  public strokecolor:string;
  public color:number=-1;
- public flatlongs:any;
+ public flatlongs:any=[[]];
  public index:number=0;
 
   constructor(private db2:AngularFireDatabase,private ngzone:NgZone,private mapsAPILoader: MapsAPILoader, private ngZone: NgZone,private service:LoginService,private afAuth: AngularFireAuth,private db: AngularFireDatabase,private afs:AngularFirestore,private route:Router) {
@@ -159,6 +164,8 @@ this.latitude=event.coords.lat;
 this.longitude=event.coords.lng;
   this.latlongs=[];
   this.driverList=[];
+  this.driverlat=0;
+  this.driverlong=0;
  // console.log("array remove "+this.latlongs)
  
  
@@ -169,6 +176,13 @@ this.longitude=event.coords.lng;
 shownearroute()
 {
  // console.log("near routes detai")
+ this.color=0;
+ this.latlongs=[];
+ this.driverList=[];
+ this.driverlat=0;
+ this.driverlong=0;
+ this.flatlongs=[];
+ this.driverposition=[];
  var x=this.db2.list('/startpoints', ref => 
  ref.orderByChild('lat_long').startAt((this.latitude-.02)+"_"+(this.longitude-0.02)).endAt((this.latitude+0.02)+"_"+(this.longitude+0.02))); //equalTo(this.latx+"_"+this.lngx));//this.service.getdata(this.userId);
  x.snapshotChanges().subscribe(item=>{
@@ -178,7 +192,10 @@ this.driverList=[];
      y["$key"]=element.key;
    this.driverList.push(y);
      this.nearroute=element.key;
+     this.getdriverlocation(this.nearroute);
+   
        this.showroute(this.nearroute)
+      // console.log("location"+this.driverposition);
     
    })
  })
@@ -202,19 +219,19 @@ showroute(uid){
   var x=this.db2.list('/driverstop', ref => 
   ref.orderByChild('userid').equalTo(uid));//this.service.getdata(this.userId);
   x.snapshotChanges().subscribe(item=>{
-this.userList=[];
+this.stopList=[];
 
 
     item.forEach(element=>{
       var y=element.payload.toJSON();
       y["$key"]=element.key;
-      this.userList.push(y);
+      this.stopList.push(y);
       this.routeid=element.key;
     
     
      // console.log("lenght of array2="+this.flatlongs.length+"");
      this.i=0;
-   this.userList.forEach(x=>{
+   this.stopList.forEach(x=>{
      
      while(x.stops[this.i]!=undefined)
      {
@@ -225,10 +242,11 @@ this.userList=[];
         timing:x.stops[this.i].timing
       }
       this.latlongs.push(this.latlong);
-      this.flatlongs[this.index][this.i]=this.latlong;
+     // this.flatlongs[this.index][this.i]=this.latlong;
      this.i++;
       }
 
+      
     
    })
     this.flatlongs[this.index]=this.latlongs;
@@ -265,5 +283,23 @@ this.userList=[];
  
  
  
+ }
+ getdriverlocation(id:string)
+ {
+  var x=this.db2.list('/current_location/'+id);
+    x.snapshotChanges().subscribe(item=>{
+     // this.driverposition.push(item);
+      item.forEach(element=>{
+      var y=element.payload.toJSON();
+     //y["$key"]=element.key;
+          this.driverposition.push(y);
+      console.log("location"+this.driverposition);
+      
+    })
+    console.log("location"+this.driverposition.length);
+    this.driverlat=this.driverposition[0];
+    this.driverlong=this.driverposition[1];
+  })
+  
  }
 }
