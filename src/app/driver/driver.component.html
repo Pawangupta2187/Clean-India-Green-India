@@ -1,28 +1,27 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-sidenav-container>
-  <mat-sidenav #sidenav style="text-align:center;color:white;background-color:#464646 ">
-     
+  <mat-sidenav #sidenav style="text-align:center;color:white;background-color:#3F51B5 ">
+    <!-- <a href="#">Profile</a>  -->
+    <mat-card class="example-card" style="background-color:#3F51B5;color:white;" routerLink="/profile">
+   <mat-card-header>
+     <div mat-card-avatar class="example-header-image"></div>
+     <mat-card-title  style="color:white"><div *ngFor="let user of userList">{{user.displayName}}</div></mat-card-title>
+     <mat-card-subtitle  style="color:white"><div *ngFor="let user of userList">{{user.email}}</div></mat-card-subtitle>
+   </mat-card-header>
+   </mat-card>
 
-     <!-- <a href="#">Profile</a>  -->
-     <mat-card class="example-card" style="background-color:#464646;color:white;">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title  style="color:white">Shiba Inu</mat-card-title>
-        <mat-card-subtitle  style="color:white">Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-      </mat-card>
-
-      <mat-list style="color:white;">
-          <mat-list-item  style="color:white">Clean India Green India</mat-list-item>
-          <mat-divider  style="background-color:white"></mat-divider>
-          <mat-list-item  style="color:white">About Us</mat-list-item>
-          <mat-divider  style="background-color:white"></mat-divider>
-          <mat-list-item  style="color:white">Feedback</mat-list-item>
-          <mat-divider  style="background-color:white"></mat-divider>
-          <mat-list-item  style="color:white">Logout</mat-list-item>
-          
-        </mat-list>     
-  </mat-sidenav>
+   <mat-list style="color:white;">
+       <mat-list-item  style="color:white"><a matLine href="#"style="color:white">Clean India Green India</a></mat-list-item>
+       <mat-divider  style="background-color:white"></mat-divider>
+       <mat-list-item  style="color:white"><a matLine href="#"style="color:white">About Us</a></mat-list-item>
+       <mat-divider  style="background-color:white"></mat-divider>
+       <mat-list-item  style="color:white"><a matLine href="" (click)="logout()" style="color:white">Feedback</a></mat-list-item>
+       <mat-divider  style="background-color:white"></mat-divider><mat-divider  style="background-color:white"></mat-divider>
+       <mat-list-item  style="color:white"><a matLine href="" (click)="logout()"style="color:white">Logout</a></mat-list-item>
+       <mat-divider  style="background-color:white"></mat-divider>
+     </mat-list>     
+</mat-sidenav>
+ 
   <mat-sidenav-content style="background-color: #464646">
     <div style="width:100%;height:50px;background-color:#464646;" class="fixed-top">
       <button mat-button (click)="sidenav.open()"><h1><i class="fas fa-bars" style="color:white"></i></h1></button>

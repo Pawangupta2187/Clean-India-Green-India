@@ -18,5 +18,4 @@ export class TimingComponent implements OnInit {
     this.dialogRef.close();
   }
 
-
 }

@@ -2,9 +2,9 @@
 <mat-sidenav-container>
   
      
-    <mat-sidenav #sidenav style="text-align:center;color:white;background-color:#39ff15 ">
+    <mat-sidenav #sidenav style="text-align:center;color:white;background-color:#3F51B5 ">
      <!-- <a href="#">Profile</a>  -->
-     <mat-card class="example-card" style="background-color:#39ff15;color:white;" routerLink="/profile">
+     <mat-card class="example-card" style="background-color:#3F51B5;color:white;" routerLink="/profile">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title  style="color:white"><div *ngFor="let user of userList">{{user.displayName}}</div></mat-card-title>
@@ -43,7 +43,7 @@
 
   <mat-sidenav-content>
    
-    <div style="width:100%;height:50px;background-color:#39ff15;padding-left:10px;" class="fixed-top">
+    <div style="width:100%;height:50px;background-color:#3F51B5;padding-left:10px;" class="fixed-top">
       <a (click)="sidenav.open()"><h1><i class="fas fa-bars" style="color:white;padding-left:4px;"></i></h1></a>
     </div>
 
@@ -62,9 +62,12 @@
         </agm-marker>
 
    <!--driver stop-->
-         <agm-marker *ngFor="let x of latlongs;index as i" [latitude]="x.latitude" [longitude]="x.longitude" >
+   <div  *ngFor="let y of flatlongs;index as i" >
+         <agm-marker *ngFor="let x of y;index as i" [latitude]="x.latitude" [longitude]="x.longitude" >
              <agm-info-window><strong>{{x.timing}}</strong></agm-info-window>
          </agm-marker>
+
+        </div>
         <!--
    <agm-polyline    [strokeColor]="strokecolor">
           
@@ -75,7 +78,7 @@
       
        </agm-polyline>-->
    
-       <agm-polyline   *ngFor="let x of flatlongs" [strokeColor]="strokecolor">
+       <agm-polyline   *ngFor="let x of flatlongs;index as i" [strokeColor]="strokecolors[i]">
           
           <agm-polyline-point *ngFor="let y of x"  [latitude]="y.latitude" [longitude]="y.longitude"  >
             
@@ -83,14 +86,7 @@
           </agm-polyline-point>
      
       </agm-polyline>
-      <agm-polyline    [strokeColor]="strokecolor">
-          
-        <agm-polyline-point *ngFor="let y of latlongs"  [latitude]="y.latitude" [longitude]="y.longitude"  >
-          
       
-        </agm-polyline-point>
-   
-    </agm-polyline>
 
        </agm-map>
        
@@ -109,7 +105,7 @@
               
   <input type="text"  placeholder="Search for Location" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control"   #search >
   <span class="input-group-btn">
-    <button class="btn " (click)="shownearroute()" style="background-color: #39ff15" >show route</button>
+    <button class="btn " (click)="shownearroute()" style="background-color: #3F51B5" >show route</button>
   </span>           
 </div>
   
@@ -117,13 +113,13 @@
 
 
 
-<div  *ngFor="let driver of driverList"  class="jumbotron jumbotron-fluid  mb-0 "  style="padding-top: 2rem; padding-bottom: 2rem; background-color: #39ff15;">
+<div  *ngFor="let driver of driverList;index as i"  class="jumbotron jumbotron-fluid  mb-0 "  style="padding-top: 2rem; padding-bottom: 2rem; background-color: #3F51B5;">
 
   <div class="container" >
 
         <div class="card-deck text-white">
 
-      <div class="card bg-success shadow-lg" style="padding:0px;">
+      <div class="card shadow-lg" style="padding:0px;"   [ngStyle]="{backgroundColor:strokecolors[i]}">
 
         <div class="card-body  p-5">
 
@@ -133,7 +129,7 @@
 
       </div>
 
-      <div class="card bg-success shadow-lg">
+      <div class="card  shadow-lg " [ngStyle]="{backgroundColor:strokecolors[i]}">
         <div class="card-header text-center"><h4>Driver Details</h4></div>
         <div class="card-body  p-5 ">
 
@@ -172,13 +168,8 @@
   
   
               <div style="padding-top:1px;">
-                  <mat-card style="background-color:#39ff15;color:white;width:100%"><h5>
-                      <div *ngFor="let x of flatlongs">
-
-                        <div *ngFor="let y of x">
-                          {{y.latitude}}
-                        </div>
-                      </div>
+                  <mat-card style="background-color:#3F51B5;color:white;width:100%"><h5>
+                      
                       driver position {{driverlat}}- {{driverlong}}
                       <div  *ngFor="let z of driverposition">
                         {{z}}                     </div>

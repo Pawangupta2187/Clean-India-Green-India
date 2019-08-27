@@ -33,7 +33,7 @@ public latB:number=28.628222;
 userId:string;
 userList:any;
 
-
+public stopList:any;
 //near route
 
   editroute()
@@ -77,7 +77,8 @@ userList:any;
         if(user)
         { this.userId = user.uid;
          console.log(this.userId);
-      this.showdata(user.uid)
+         this.showdata();
+      this.showstops(user.uid)
       this.setCurrentPosition();
       
         }
@@ -177,7 +178,7 @@ userList:any;
         }
 
 
-        showdata(uid){
+        showstops(uid){
 
           
 
@@ -185,25 +186,31 @@ userList:any;
           var x=this.db2.list('/driverstop', ref => 
           ref.orderByChild('userid').equalTo(uid));//this.service.getdata(this.userId);
           x.snapshotChanges().subscribe(item=>{
-        this.userList=[];
+        this.stopList=[];
             item.forEach(element=>{
               var y=element.payload.toJSON();
               y["$key"]=element.key;
-              this.userList.push(y);
+              this.stopList.push(y);
               this.routeid=element.key;
               console.log("lenght of array="+element.key);
-              while(this.userList[0].stops[this.i].latitude)
-              {
-            
-              // console.log("lenght of array="+this.userList[0].stops[this.i].latitude);
-               this.latlong={
-                latitude:this.userList[0].stops[this.i].latitude,
-                longitude:this.userList[0].stops[this.i].longitude,
-                timing:this.userList[0].stops[this.i].timing
-              }
-              this.latlongs.push(this.latlong);
-               this.i++;
-              }
+              this.stopList.forEach(x=>{
+     
+                while(x.stops[this.i]!=undefined)
+                {
+                 console.log(x.stops[this.i]);
+                 this.latlong={
+                   latitude:x.stops[this.i].latitude,
+                   longitude:x.stops[this.i].longitude,
+                   timing:x.stops[this.i].timing
+                 }
+                 this.latlongs.push(this.latlong);
+                // this.flatlongs[this.index][this.i]=this.latlong;
+                this.i++;
+                 }
+           
+                 
+               
+              })
              
             //console.log("lenght of array="+this.userList.key);
 
@@ -234,6 +241,20 @@ this.db2.object('current_location/'+this.userId).update({
            console.log("done")
          }
 
+
+         showdata(){
+           console.log("profile details")
+          var x=this.service.getdata(this.userId);
+          x.snapshotChanges().subscribe(item=>{
+            this.userList=[];
+            item.forEach(element=>{
+              var y=element.payload.toJSON();
+              y["$key"]=element.key;
+              this.userList.push(y);
+           //  console.log("data"+item);
+            })
+          })
+         }
          
       }
 

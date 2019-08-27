@@ -251,6 +251,7 @@ this.stopList=[];
    })
     this.flatlongs[this.index]=this.latlongs;
     this.index++;
+    this.latlongs=[];
     /*console.log(this.latlongs.length);
     console.log(this.flatlongs.length);
     console.log(this.flatlongs[0][0].latitude);
