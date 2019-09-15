@@ -69,8 +69,8 @@ public stopList:any;
     
     ngOnInit() {
       this.zoom=8;
-      this.latitude=26.2652;
-      this.longitude=28.8352;
+     // this.latitude=28.589412;
+     //this.longitude=77.048247;
       
  this.service.getLoggedInUser()
  .subscribe( user => {
@@ -113,15 +113,17 @@ public stopList:any;
         private setCurrentPosition()
   
         {
-         // console.log('done');
+         // console.log('done');  //getCurrentPosition
           if('geolocation' in navigator)
           {
-            navigator.geolocation.getCurrentPosition((position)=>{
+            navigator.geolocation.watchPosition((position)=>{
               this.latitude=position.coords.latitude;
               this.longitude=position.coords.longitude;
               this.zoom=8;
+              this.addcurlocation(position.coords.latitude,position.coords.longitude);  
+              console.log("Location Find again")
                             })
-               this.addcurlocation()  ;          
+               //this.addcurlocation()  ;          
           }
         }
 
@@ -232,11 +234,11 @@ public stopList:any;
 
 
          }
-         addcurlocation(){
+         addcurlocation(lats:number,longs:number){
           console.log(this.userId)
 this.db2.object('current_location/'+this.userId).update({
-            latitude:this.latitude,
-            longitude:this.longitude,
+            latitude:lats,
+            longitude:longs,
                  })
            console.log("done")
          }

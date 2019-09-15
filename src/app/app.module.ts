@@ -15,6 +15,7 @@ import {MaterialModule} from './material/material.module';
 
 
 import {CommonModule} from '@angular/common';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
@@ -27,6 +28,7 @@ import { TimingComponent } from './timing/timing.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { PassworddialogComponent } from './passworddialog/passworddialog.component';
+import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
 
 
 
@@ -40,7 +42,8 @@ import { PassworddialogComponent } from './passworddialog/passworddialog.compone
     TimingComponent,
     ProfileComponent,
     ResetpasswordComponent,
-    PassworddialogComponent 
+    PassworddialogComponent,
+    UpdateprofileComponent 
   ],
   entryComponents:[TimingComponent,PassworddialogComponent],
   imports: [
@@ -52,6 +55,7 @@ import { PassworddialogComponent } from './passworddialog/passworddialog.compone
     BrowserAnimationsModule,
     MaterialModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireStorageModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -61,6 +65,6 @@ import { PassworddialogComponent } from './passworddialog/passworddialog.compone
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent]  
 })
 export class AppModule { }

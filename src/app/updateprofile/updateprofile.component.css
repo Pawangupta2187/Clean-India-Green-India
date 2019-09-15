@@ -1,0 +1,42 @@
+.card{
+   
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color:#39ff15;
+}
+
+td {
+
+    /* css-3 */
+    white-space: -o-pre-wrap; 
+    word-wrap: break-word;
+    white-space: pre-wrap; 
+    white-space: -moz-pre-wrap; 
+    white-space: -pre-wrap; 
+    font-size:25px;
+
+}
+table { 
+    table-layout: fixed;
+    width: 100%
+  }
+
+  input
+{
+    color:#3F51B5;
+}
+  
+  .card-img-profile {
+    max-width: 100%;
+    border-radius: 50%;
+    /*margin-top: -95px;
+    margin-bottom: 35px;*/
+    border: 5px solid ;
+  }
+  .hiddenFileInput > input{
+    height: 100%;
+    width: 100;
+    opacity: 0;
+    cursor: pointer;
+  }

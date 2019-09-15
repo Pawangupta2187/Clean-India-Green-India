@@ -1,0 +1,89 @@
+<!--<form  [formGroup]="updateForm" (ngSubmit)="onSubmit(updateForm.value)">
+<div class="text-center">
+  <img [src]="imgSrc" width="350px" height="250px" (click)="imageUpload.click()">
+</div>
+  <div class="form-group">
+  <label>select file to upload</label>
+<input type="file" accept="image/*" #imageUpload class="form-control" formControlName="image_url" (change)="showPreview($event)">
+<button type="submit" class="btn btn-success">Upload</button>
+</div>
+</form>
+-->
+<body style=" margin: 0;padding: 0;background-color:#3F51B5;height: 100vh;font-family: sarif">
+    <div class="d-flex justify-content-center h-100">
+
+    <!--<form  [formGroup]="updateForm" (ngSubmit)="onSubmit(updateForm.value)">-->
+         <div class="card bg-white shadow-lg">
+    <div class="card-header text-center text-white" style="font-weight: bold">
+      <img alt='' (click)="imageUpload.click()" width="150px" height="150px"  class='card-img-profile' [src]="imgSrc">
+    
+    </div>
+    <div class="card-body" >
+      <form  [formGroup]="updateForm" (ngSubmit)="onSubmit(updateForm.value)" novalidate >
+          <span class="hiddenFileInput"><input type="file" accept="image/*" #imageUpload class="form-control" formControlName="image_url" (change)="showPreview($event)" ></span>
+          
+    <table *ngFor="let user of userList" width="100%" style="font-weight: 25px;color:#3F51B5" align="center"  cellpadding="4" cellspacing="2"  class="table" class="header-text">
+	
+      
+          <tr>
+            <td align="left" >Name</td>
+            <div class="form-group" >
+                <input type="text" value="{{user.displayName}}" [class.is-invalid]="updateForm.get('username').invalid && updateForm.get('username').touched"  class="form-control"  formControlName="username"  > 
+                <small  class="text-danger" [class.d-none]="updateForm.get('username').valid || updateForm.get('username').untouched">Name is required</small>
+                          </div> 
+          </tr>
+        <tr>
+            <td align="left">Gender</td>
+            <td align="left">
+                
+                <div   class="form-group" >
+                 
+                    <select class="form-control" formControlName="gender" style="color:#3F51B5" >
+                          <option value="Male" [selected]="user.gender==='Male'">Male</option>
+                              <option value="Female"[selected]="user.gender==='Female'">Female</option>
+                    </select>
+                  </div>
+            </td>
+          </tr>
+         
+          <tr>
+            <td align="left">Email</td>
+            <td align="left">
+                <div class="form-group">
+          
+                    <input type="email" value="{{user.email}}"  [class.is-invalid]="updateForm.get('email').invalid && updateForm.get('email').touched" class="form-control" formControlName="email"  placeholder="Enter Email"> 
+                    <div *ngIf="updateForm.get('email').invalid && updateForm.get('email').touched">
+                      <small *ngIf= "updateForm.get('email').errors?.required" class="text-danger">email is required</small>
+                      <small *ngIf="updateForm.get('email').errors?.email" class="text-danger">email must be in correct formate</small>
+                    </div>
+                    </div>
+
+          </tr><tr>
+                 <td align="left">Contact Number</td>
+            <td align="left">
+             
+              <div class="form-group">
+          
+                  <input  [class.is-invalid]="updateForm.get('contact').invalid && updateForm.get('contact').touched" formControlName="contact" type="tel" value=" {{user.phoneNumber}}" class="form-control" placeholder="Enter Contact">
+                <div *ngIf="updateForm.get('contact').invalid && updateForm.get('contact').touched">
+                  <small *ngIf= "updateForm.get('contact').errors?.required" class="text-danger">contact is required</small>
+                  <small *ngIf="updateForm.get('contact').errors?.minlength" class="text-danger">contact must be 10 characters</small>
+                </div>
+              </div>
+            </td>
+          </tr>
+            
+            
+        </table>
+        </form>
+      </div>
+      <div class="card-footer text-center ">
+        <button class="btn" style="background-color: #3F51B5;color:white" [disabled]="updateForm.invalid" (click)="showupdate()">Update</button> &nbsp;
+        <button class="btn" style="background-color: #3F51B5;color:white">Cancel</button>
+      </div>
+    </div>
+ 
+ 
+    </div>
+  
+  </body>

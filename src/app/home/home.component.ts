@@ -150,7 +150,7 @@ private setCurrentPosition()
   console.log('done');
   if('geolocation' in navigator)
   {
-    navigator.geolocation.getCurrentPosition((position)=>{
+    navigator.geolocation.watchPosition((position)=>{
       this.latitude=position.coords.latitude;
       this.longitude=position.coords.longitude;
       this.zoom=8;
@@ -166,6 +166,8 @@ this.longitude=event.coords.lng;
   this.driverList=[];
   this.driverlat=0;
   this.driverlong=0;
+  this.flatlongs=[];
+  this.i=0;
  // console.log("array remove "+this.latlongs)
  
  
@@ -176,6 +178,7 @@ this.longitude=event.coords.lng;
 shownearroute()
 {
  // console.log("near routes detai")
+ 
  this.color=0;
  this.latlongs=[];
  this.driverList=[];
@@ -184,7 +187,7 @@ shownearroute()
  this.flatlongs=[];
  this.driverposition=[];
  var x=this.db2.list('/startpoints', ref => 
- ref.orderByChild('lat_long').startAt((this.latitude-.02)+"_"+(this.longitude-0.02)).endAt((this.latitude+0.02)+"_"+(this.longitude+0.02))); //equalTo(this.latx+"_"+this.lngx));//this.service.getdata(this.userId);
+ ref.orderByChild('lat_long').startAt((this.latitude-.001)+"_"+(this.longitude-0.001)).endAt((this.latitude+0.001)+"_"+(this.longitude+0.001))); //equalTo(this.latx+"_"+this.lngx));//this.service.getdata(this.userId);
  x.snapshotChanges().subscribe(item=>{
 this.driverList=[];
    item.forEach(element=>{
@@ -297,9 +300,11 @@ this.stopList=[];
       console.log("location"+this.driverposition);
       
     })
-    console.log("location"+this.driverposition.length);
+    console.log("location 1st"+this.driverposition[0]);
     this.driverlat=this.driverposition[0];
     this.driverlong=this.driverposition[1];
+    this.driverposition=[];
+
   })
   
  }

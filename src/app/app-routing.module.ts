@@ -6,7 +6,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { DriverComponent } from './driver/driver.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
-
+import {UpdateprofileComponent} from './updateprofile/updateprofile.component';
 const routes: Routes = [
 {path: '',redirectTo:'/login',pathMatch:'full'},
 {path:'login',component:LoginComponent },
@@ -14,6 +14,7 @@ const routes: Routes = [
 {path:'register',component:RegistrationComponent},
 {path:'driver',component:DriverComponent},
 {path:'profile',component:ProfileComponent},
+{path:'updateProfile',component:UpdateprofileComponent},
 {path:'resetpassword',component:ResetpasswordComponent}
 ];
 
