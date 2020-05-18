@@ -137,13 +137,13 @@
           <table class="table text-white" width="80%"  align="left"  cellpadding="2" cellspacing="1"  >
             <tbody >
               <tr>
-                <td >Name </td><td>  {{driver.dname}}</td>
+                <td >Name </td><td>  {{driver.displayName}}</td>
               </tr>
               <tr>
-                <td>Contact </td><td>  {{driver.contact}}</td>
+                <td>Contact </td><td>  {{driver.phoneNumber}}</td>
               </tr>
               <tr>
-                <td>Duty Timing  </td><td>  {{driver.duty_timing}}</td>
+                <td>Duty Timing  </td><td>  {{driver.timing}}</td>
               </tr>
             
             </tbody>
@@ -170,9 +170,9 @@
               <div style="padding-top:1px;">
                   <mat-card style="background-color:#3F51B5;color:white;width:100%"><h5>
                       
-                      driver position {{driverlat}}- {{driverlong}}
+                     <!-- driver position {{driverlat}}- {{driverlong}}
                       <div  *ngFor="let z of driverposition">
-                        {{z}}                     </div>
+                        {{z}}                     </div>-->
                       This project is used for track the garbage collector vehicle .user just need to login in their account and at home page and user need to search their location 
                       or press the current location button and after that they see the current location of vehicle and their whole route and also the details of driver.
                       for more information click here....</h5>

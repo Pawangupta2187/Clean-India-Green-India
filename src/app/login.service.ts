@@ -65,7 +65,7 @@ user_id:string;
         .then(userCredential => {
           if(userCredential) {
             console.log(userCredential)
-            this.router.navigate(['/home']);
+            this.router.navigate(['/driver']);
           }
         })
     }

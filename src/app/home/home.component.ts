@@ -187,18 +187,21 @@ shownearroute()
  this.flatlongs=[];
  this.driverposition=[];
  var x=this.db2.list('/startpoints', ref => 
- ref.orderByChild('lat_long').startAt((this.latitude-.001)+"_"+(this.longitude-0.001)).endAt((this.latitude+0.001)+"_"+(this.longitude+0.001))); //equalTo(this.latx+"_"+this.lngx));//this.service.getdata(this.userId);
+ ref.orderByChild('lat_long').startAt((this.latitude-.001)+"_"+(this.longitude-0.001)).endAt((this.latitude+0.001)+"_"+(this.longitude+0.001))); 
+ //equalTo(this.latx+"_"+this.lngx));//this.service.getdata(this.userId);
  x.snapshotChanges().subscribe(item=>{
 this.driverList=[];
    item.forEach(element=>{
      var y=element.payload.toJSON();
      y["$key"]=element.key;
-   this.driverList.push(y);
+   //this.driverList.push(y);
+  // this.getdriverprofile(this.nearroute);
+   //console.log("drivers "+this.driverList.length());
      this.nearroute=element.key;
      this.getdriverlocation(this.nearroute);
-   
+     this.getdriverprofile(this.nearroute);
        this.showroute(this.nearroute)
-      // console.log("location"+this.driverposition);
+      // console.log("location"+this.driverposition)
     
    })
  })
@@ -207,7 +210,22 @@ this.driverList=[];
 
 }
 
+getdriverprofile(uid){
+  console.log("driver  id"+uid);
+  var x=this.service.getdata(uid);
+  x.snapshotChanges().subscribe(item=>{
+    //this.driverList=[];
+    item.forEach(element=>{
+      var y=element.payload.toJSON();
+      y["$key"]=element.key;
 
+      this.driverList.push(y);
+   
+    })
+    console.log("data"+this.driverList[0]);
+  })
+  
+}
 
 showroute(uid){
 

@@ -7,6 +7,7 @@ import { DriverComponent } from './driver/driver.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import {UpdateprofileComponent} from './updateprofile/updateprofile.component';
+import {IndexComponent} from './index/index.component';
 const routes: Routes = [
 {path: '',redirectTo:'/login',pathMatch:'full'},
 {path:'login',component:LoginComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
 {path:'driver',component:DriverComponent},
 {path:'profile',component:ProfileComponent},
 {path:'updateProfile',component:UpdateprofileComponent},
-{path:'resetpassword',component:ResetpasswordComponent}
+{path:'resetpassword',component:ResetpasswordComponent},
+{path:'index',component:IndexComponent}
 ];
 
 @NgModule({

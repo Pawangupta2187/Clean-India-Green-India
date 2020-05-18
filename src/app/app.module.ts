@@ -29,6 +29,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { PassworddialogComponent } from './passworddialog/passworddialog.component';
 import { UpdateprofileComponent } from './updateprofile/updateprofile.component';
+import { IndexComponent } from './index/index.component';
 
 
 
@@ -43,7 +44,8 @@ import { UpdateprofileComponent } from './updateprofile/updateprofile.component'
     ProfileComponent,
     ResetpasswordComponent,
     PassworddialogComponent,
-    UpdateprofileComponent 
+    UpdateprofileComponent,
+    IndexComponent 
   ],
   entryComponents:[TimingComponent,PassworddialogComponent],
   imports: [
